@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iuri Schaffer — Email Marketing</title>
+<meta name="description" content="Portfólio de Email Marketing — Iuri Schaffer. HTML emails criados com foco em conversão, identidade de marca e compatibilidade cross-client.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0c0c0f;
+  --surface: #13131a;
+  --border:  #1e1e28;
+  --text:    #e8e6e0;
+  --muted:   #5a5a6e;
+  --accent:  #c8a96e;
+  --white:   #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 80px 64px 96px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 64px; right: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.header-inner {
+  position: relative;
+  max-width: 960px;
+}
+
+.header-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.header-role {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 40px;
+}
+
+.header-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(232,230,224,0.6);
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  padding: 28px 64px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 8px;
+}
+
+.filter-btn {
+  padding: 6px 18px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 100px;
+}
+
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 500; }
+
+/* ── GRID ── */
+main { padding: 64px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px;
+  max-width: 1200px;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover { transform: translateY(-4px); z-index: 2; }
+.card:hover .card-preview-inner { transform: scale(1.03); }
+.card:hover .card-overlay { opacity: 1; }
+
+.card-preview {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-preview-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12,12,15,0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.card-overlay-btn {
+  padding: 10px 28px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.card-info {
+  padding: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.card-client {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.card-meta {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.tag {
+  font-size: 10px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px 64px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px;
+  color: var(--white);
+}
+
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header-inner { animation: fadeUp 0.7s ease both; }
+.filter-bar   { animation: fadeUp 0.7s ease 0.1s both; }
+.card:nth-child(1) { animation: fadeUp 0.5s ease 0.15s both; }
+.card:nth-child(2) { animation: fadeUp 0.5s ease 0.22s both; }
+.card:nth-child(3) { animation: fadeUp 0.5s ease 0.29s both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  header, main, footer { padding: 48px 24px; }
+  header::after { left: 24px; right: 24px; }
+  .filter-bar { padding: 20px 24px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-label">Portfólio</div>
+    <h1>Iuri <em>Schaffer</em></h1>
+    <p class="header-role">Email Marketing Designer</p>
+    <p class="header-desc">
+      Emails HTML desenvolvidos com foco em identidade de marca,
+      compatibilidade cross-client e estrutura de funil.
+      Cada peça construída à mão, sem templates genéricos.
+    </p>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <span class="filter-label">Filtrar</span>
+  <button class="filter-btn active" onclick="filterCards('all', this)">Todos</button>
+  <button class="filter-btn" onclick="filterCards('meio-funil', this)">Meio de funil</button>
+  <button class="filter-btn" onclick="filterCards('industrial', this)">Industrial</button>
+  <button class="filter-btn" onclick="filterCards('b2b', this)">B2B</button>
+</div>
+
+<main>
+  <div class="grid" id="grid">
+
+    <!-- ── CARD 1 — MBX Válvula Lodo ── -->
+    <a class="card" href="mbx_email_valvula_lodo_v6.html" target="_blank" data-tags="meio-funil industrial b2b">
+      <div class="card-preview">
+        <div class="card-preview-inner" style="background:#e8eaf0;">
+          <div style="display:flex;flex-direction:column;height:240px;">
+            <div style="background:#fff;height:14px;"></div>
+            <div style="background:#00008F;padding:12px 10px;flex-shrink:0;">
+              <div style="background:#FF262E;height:4px;width:55%;margin-bottom:7px;border-radius:1px;"></div>
+              <div style="background:rgba(255,255,255,0.85);height:7px;width:80%;margin-bottom:4px;border-radius:1px;"></div>
+              <div style="background:rgba(255,255,255,0.85);height:7px;width:65%;margin-bottom:4px;border-radius:1px;"></div>
+              <div style="background:#FF262E;height:7px;width:50%;border-radius:1px;"></div>
+            </div>
+            <div style="background:#fff;flex:1;padding:10px;display:flex;flex-direction:column;gap:5px;">
+              <div style="background:#eef0f8;height:52px;width:100%;display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 50 70" width="24" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="15" y="38" width="20" height="18" rx="2" fill="#00008F"/>
+                  <rect x="18" y="28" width="14" height="12" rx="1" fill="#1a1aaa"/>
+                  <circle cx="25" cy="34" r="5" fill="#FF262E"/>
+                  <rect x="21" y="18" width="8" height="12" rx="1" fill="#00008F"/>
+                  <rect x="11" y="42" width="6" height="4" rx="1" fill="#555"/>
+                  <rect x="33" y="42" width="6" height="4" rx="1" fill="#555"/>
+                </svg>
+              </div>
+              <div style="background:#dde0ec;height:4px;width:88%;border-radius:1px;"></div>
+              <div style="background:#dde0ec;height:4px;width:72%;border-radius:1px;"></div>
+              <div style="display:flex;gap:3px;margin-top:3px;">
+                <div style="flex:1;background:#f4f6ff;border-top:2px solid #00008F;height:22px;"></div>
+                <div style="flex:1;background:#f4f6ff;border-top:2px solid #00008F;height:22px;"></div>
+                <div style="flex:1;background:#f4f6ff;border-top:2px solid #FF262E;height:22px;"></div>
+              </div>
+            </div>
+            <div style="background:#FF262E;height:12px;"></div>
+          </div>
+        </div>
+        <div class="card-overlay">
+          <div class="card-overlay-btn">Abrir E-mail →</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-client">MBX Máquinas</div>
+        <div class="card-title">Válvula de Descarga de Lodo</div>
+        <div class="card-meta">Email educativo de meio de funil — apresenta o processo técnico, os 3 modelos e conduz ao CTA de orçamento.</div>
+        <div class="card-tags">
+          <span class="tag">Meio de funil</span>
+          <span class="tag">Industrial</span>
+          <span class="tag">B2B</span>
+          <span class="tag">HTML puro</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- ── PLACEHOLDER 2 ── -->
+    <div class="card" style="opacity:0.3;pointer-events:none;" data-tags="">
+      <div class="card-preview" style="display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#2a2a3e;">Em breve</span>
+      </div>
+      <div class="card-info">
+        <div class="card-client" style="color:#2a2a3e;">—</div>
+        <div class="card-title" style="color:#2a2a3e;">Próximo projeto</div>
+        <div class="card-meta" style="color:#1e1e28;">Adicione seus próximos emails aqui.</div>
+      </div>
+    </div>
+
+    <!-- ── PLACEHOLDER 3 ── -->
+    <div class="card" style="opacity:0.15;pointer-events:none;" data-tags="">
+      <div class="card-preview" style="display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#1e1e28;">Em breve</span>
+      </div>
+      <div class="card-info">
+        <div class="card-client" style="color:#1e1e28;">—</div>
+        <div class="card-title" style="color:#1e1e28;">Próximo projeto</div>
+        <div class="card-meta" style="color:#16161e;">Adicione seus próximos emails aqui.</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span class="footer-name">Iuri Schaffer</span>
+  <span class="footer-copy">Email Marketing Designer · © 2025</span>
+</footer>
+
+<script>
+function filterCards(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#grid .card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'block' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
